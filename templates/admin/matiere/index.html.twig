@@ -1,0 +1,50 @@
+{% extends 'base.html.twig'%}
+{% block title "Gerer les matiere" %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gerer les Matiere</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class=" text-right">
+            <a href="{{ path('admin.matiere.new') }}" class="btn btn-primary">Nouvelle matiere</a>
+        </div>
+        </br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <!-- <th>ID</th>-->
+                <th>ID Matiere</th>
+                <th>Nom de la matiere</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for matiere in matieres %}
+                <tr>
+                    <!--<td>{#{ parain.getId() }#}</td>-->
+                    <td>{{ matiere.id  }}</td>
+                    <td>{{ matiere.getNomMat() }}</td>
+                    <td>
+                        <a href="{{path('admin.matiere.edit',{id: matiere.id})}}" class="btn btn-secondary">Editer</a>
+                        <form method="POST" action="{{ path('admin.matiere.delete',{id: matiere.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes vous vraiment sur de supprimer cet information?Mr/Mle:{{ matiere.getNomMat() }}')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ matiere.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Pas de resultats</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <!--<div class="pagination">
+            {# { knp_pagination_render(etudiants) }#}
+        </div>-->
+    </div>
+{% endblock %}

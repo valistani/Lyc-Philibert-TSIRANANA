@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-12">{{ form_row(form.annee_scolaire) }}</div>
+</div>
+{{ form_widget(form)}}
+<div class="text-right"><button class="btn btn-primary" style="color: #FFFFFF;">{{ button|default('Enregister') }}</button></div>
+{{ form_end(form) }}

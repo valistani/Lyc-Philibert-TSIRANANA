@@ -1,0 +1,51 @@
+{% extends 'base.html.twig'%}
+{% block title "Gerer les repondants" %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gerer les repondants</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class=" text-right">
+            <a href="{{ path('admin.tuteur.new') }}" class="btn btn-primary">Nouveaux Repondant</a>
+        </div>
+        </br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                 <th>ID</th>
+                <th>Nom</th>
+                <th>Profession</th>
+                <th>Contact</th>
+                <th>Addresse</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tuteur in tuteurs %}
+                <tr>
+                    <td>{{ tuteur.id }}</td>
+                    <td>{{ tuteur.nomT }}</td>
+                    <td>{{ tuteur.professionT }}</td>
+                    <td>{{ tuteur.contactT }}</td>
+                    <td>{{ tuteur.addresseT }}</td>
+                    <td>
+                        <a href="{{path('admin.tuteur.edit',{id: tuteur.id})}}" class="btn btn-secondary">Editer</a>
+                        <form method="POST" action="{{ path('admin.tuteur.delete',{id: tuteur.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes vous vraiment sur de supprimer cet information?Mr/Mle:{{ tuteur.nomT }}')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tuteur.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Pas de resultats</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

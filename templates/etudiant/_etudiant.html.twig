@@ -1,0 +1,18 @@
+<tr>
+    <!--<td>{#{ etudiant.getId()  }#} </td>-->
+    <td>
+        {% if etudiant.filename %}
+        <!--<img src="/images/etudiants/{{ etudiant.filename }}" alt="card-img-top" style="width: 100%;height: auto;">-->
+            <a href="{{ path('etudiant.show',{slug:etudiant.slug,id:etudiant.id}) }}"><img src="{{ vich_uploader_asset(etudiant, 'imageFile') | imagine_filter('tiny') }}" alt="card-img-top" style="width: 100%;height: auto;border-radius: 20px;"></a>
+        {% else %}
+            <a href="{{ path('etudiant.show',{slug:etudiant.slug,id:etudiant.id}) }}"><img src="{{'images/properties/empty.jpg' | imagine_filter('tiny')}}" alt="card-img-top" style="weight:100%;height: auto;border-radius: 20px;"></a>
+        {% endif %}
+    </td>
+    <td>{{ etudiant.getNomE()  }}  <!--<a href="{#{ path('etudiant.show',{id: etudiant.id, slug: etudiant.slug})}#}">-->{{ etudiant.getPrenomE()  }}<!--</a>--></td>
+    <td>{{ etudiant.formatDtStr  }} à {{ etudiant.lieuNaissanceE   }}</td>
+    <td>{{ etudiant.sexeType  }}</td>
+    <td>{{ etudiant.getNationaliteE()  }}</td>
+    <td>{{ etudiant.getAddresseE()  }} </td>
+    <td>{{ etudiant.getPhoneE()  }} </td>
+</tr>
+

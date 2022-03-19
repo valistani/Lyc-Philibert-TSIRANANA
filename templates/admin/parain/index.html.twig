@@ -1,0 +1,52 @@
+{% extends 'base.html.twig'%}
+{% block title "Gerer les parents" %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gerer les Parents</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+            <div class=" text-right">
+                <a href="{{ path('admin.parain.new') }}" class="btn btn-primary">Créer une Parent</a>
+            </div>
+            </br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+               <!-- <th>ID</th>-->
+                <th>Nom du pére</th>
+                <th>Nom du mère</th>
+                <th>Addresse du parent</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for parain in parains %}
+                <tr>
+                    <!--<td>{#{ parain.getId() }#}</td>-->
+                    <td>{{ parain.getNomP()  }}</td>
+                    <td>{{ parain.getNomM() }}</td>
+                    <td>{{ parain.getAddressePa()  }}</td>
+                    <td>
+                        <a href="{{path('admin.parain.edit',{id: parain.id})}}" class="btn btn-secondary">Editer</a>
+                        <form method="POST" action="{{ path('admin.parain.delete',{id: parain.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes vous vraiment sur de supprimer cet information?Mr/Mle:{{ parain.getNomP() }}')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ parain.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Pas de resultats</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <!--<div class="pagination">
+            {# { knp_pagination_render(etudiants) }#}
+        </div>-->
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+Nom e : Nom
+Prenom e : Prénom(s)
+Nationalite e : Nationalité
+Date naissance e : Date de naissance
+Lieu naissance e : Lieu de naissance
+Sexe e : Sexe
+Addresse e : Addresse de l'étudiant
+Phone e : Téléphone
+Email e : E-mail de l'étudiant
+Image file : Photo de l'étudiant
+Year : Années
+Month : Mois
+Day : Jour
+Garçon : Garçon
+Fille : Fille
+Malagasy: Malagasy
+Etranger : Etranger
+Scolaire: Année Scolaire
+
+
+Nom p : Nom du pére
+Profession p : Profession du pére
+Contact p : Contact du pére
+Nom m : Nom du mére
+Profession m : Profession du mére
+Contact m : Contact du mére
+Addresse pa : Addresse du parent
+
+Nom s : Nom de l'étudiant
+Sexe s : Sexe de l'étudiant
+Nationalite s : Nationalité de l'étudiant
+Parain : Nom pére de l'étudiant
+
+Nom mat : Nom d'une matiere
+Note: Note

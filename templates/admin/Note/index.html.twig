@@ -1,0 +1,50 @@
+{% extends 'base.html.twig'%}
+{% block title "Gerer les notes" %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gerer les Notes</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class=" text-right">
+            <a href="{{ path('admin.note.new') }}" class="btn btn-primary">Nouvelle note</a>
+        </div>
+        </br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <!-- <th>ID</th>-->
+                <th>ID Note</th>
+                <th>Note</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for note in notes %}
+                <tr>
+                    <!--<td>{#{ parain.getId() }#}</td>-->
+                    <td>{{ note.id  }}</td>
+                    <td>{{ note.getNote() }}</td>
+                    <td>
+                        <a href="{{path('admin.note.edit',{id: note.id})}}" class="btn btn-secondary">Editer</a>
+                        <form method="POST" action="{{ path('admin.note.delete',{id: note.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes vous vraiment sur de supprimer cet information?Mr/Mle:{{ note.getNote() }}')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ note.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Pas de resultats</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <!--<div class="pagination">
+            {# { knp_pagination_render(etudiants) }#}
+        </div>-->
+    </div>
+{% endblock %}

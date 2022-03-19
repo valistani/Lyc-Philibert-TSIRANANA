@@ -1,0 +1,33 @@
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+                web_root: "%kernel.project_dir%/public/"
+                cache_prefix: "media/cache/resolve"
+    filter_sets:
+        thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [360, 230], mode: outbound }
+                background: { size: [ 361, 231 ], position: center, color: '#313c66' }
+        medium:
+            quality: 75
+            filters:
+                thumbnail: { size: [750, 360], mode: outbound}
+                background: { size: [ 751, 361 ], position: center, color: '#313c66' }
+        tiny:
+            quality: 75
+            filters:
+                thumbnail: { size: [50, 50], mode: outbound }
+    loaders:
+        thumb:
+            filesystem:
+                data_root: "%kernel.project_dir%/public/images/etudiants"
+
+
+#################################################################################################################
+# See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+#liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    #driver: "gd"
+##################################################################################################################

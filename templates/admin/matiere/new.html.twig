@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title "Nouvelle matiere" %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Nouvelle matiere</h1>
+        {{ include ('admin/matiere/_form.html.twig',{form: form, button: 'Enregistrer'})}}
+    </div>
+{% endblock %}
+

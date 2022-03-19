@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block title "Profils de l'etudiant" %}
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                {% if etudiant.filename %}
+                    <!--<img src="/images/etudiants/{{ etudiant.filename }}" alt="card-img-top" style="width: 100%;height: auto;">-->
+                    <a href="{{ path('etudiant.show',{slug:etudiant.slug,id:etudiant.id}) }}"><img src="{{ vich_uploader_asset(etudiant, 'imageFile') | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%;height: auto;border-radius: 10px;"></a>
+                {% else %}
+                    <a href="{{ path('etudiant.show',{slug:etudiant.slug,id:etudiant.id}) }}"><img src="{{'images/properties/empty.jpg' | imagine_filter('medium')}}" alt="card-img-top" style="weight:100%;height: auto;border-radius:10px;"></a>00000
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <h3>{{ etudiant.nomE }} {{ etudiant.prenomE }}</h3>
+                <div>
+                    {{ etudiant.sexeType }}  <br>
+                    Ne le : {{ etudiant.formatDtStr}} à {{ etudiant.lieuNaissanceE }}<br>
+                    {{ etudiant.nationaliteE }}<br>
+                    {{ etudiant.addresseE }}
+                </div>
+                <a href="#" class="btn btn-warning">Contact</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Information en detail</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Nom e Prénom(s)</td>
+                        <td>{{ etudiant.nomE }} {{ etudiant.prenomE }}</td>
+                    </tr>
+                    <tr>
+                        <td>Sexe</td>
+                        <td>{{ etudiant.sexeType }}</td>
+                    </tr>
+                    <tr>
+                        <td>Date et Lieu de naissance</td>
+                        <td> {{ etudiant.formatDtStr}} à {{ etudiant.lieuNaissanceE }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nationalité</td>
+                        <td>{{ etudiant.nationaliteE }}</td>
+                    </tr>
+                    <tr>
+                        <td>Adresse</td>
+                        <td>{{ etudiant.addresseE}}</td>
+                    </tr>
+                    <tr>
+                        <td>Contact</td>
+                        <td>{{ etudiant.phoneE}} <br> {{ etudiant.emailE }}</td>
+                    </tr>
+                    <tr>
+                        <!--<td>{#% for parain in etudiant.parain %}
+                            {{ parain.getNomP() }}
+                        {% endfor %#}</td>
+                    </tr>-->
+                </table>
+            </div>
+            <div class="col-md-4">
+                <h2>Information pour leur parents</h2>
+                <table class="table table-striped">
+
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block title "Edite Année Scolaire" %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Editer un année scolaire</h1>
+        {{ include ('admin/scolaire/_form.html.twig',{form: form, button: 'Editer'})}}
+    </div>
+{% endblock %}

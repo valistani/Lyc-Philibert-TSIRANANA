@@ -1,0 +1,38 @@
+{% extends 'base.html.twig'%}
+{% block title "Bienvenue su la page d'acceuil de l'ISSTM" %}
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Bienvenue sur ma page d'accueil de L'iSSTM</h1>
+        <p></p>
+    </div>
+    <div class="container mt-4">
+        <h2>Les derniers Etudiants</h2>
+        <div class="row flex">
+            {% for etudiant in etudiants %}
+                <div class="col-3">
+                    <div class="card mb-4">
+                        {% if etudiant.filename %}
+                            <!--<img src="/images/etudiants/{#{ etudiant.filename }#}" alt="card-img-top" style="width: 100%;height: auto;">-->
+                            <a href="{{ path('etudiant.show',{slug:etudiant.slug,id:etudiant.id}) }}"><img src="{{ vich_uploader_asset(etudiant, 'imageFile')  | imagine_filter('thumb')}}" alt="card-img-top" style="width: 100%;height: auto;"></a>
+                        {% else %}
+                            <a href="{{ path('etudiant.show',{slug:etudiant.slug,id:etudiant.id}) }}"><img src="{{'images/properties/empty.jpg' | imagine_filter('thumb')}}" alt="card-img-top" style="weight:100%;height: auto;"></a>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('etudiant.show',{id: etudiant.id, slug: etudiant.slug})}}">{{ etudiant.getNomE() }}</a>
+                            </h5>
+                            <div class="card-text">{{ etudiant.getAddresseE() }}</div>
+                            <div class="text-primary">{{ etudiant.getPrenomE() }}</div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            {% endfor %}
+        </div>
+        <br/>
+        <div class="pagination">
+            {{ knp_pagination_render(etudiants) }}
+        </div>
+    </div>
+
+{% endblock %}

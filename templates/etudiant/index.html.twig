@@ -1,0 +1,30 @@
+{% extends 'base.html.twig'%}
+{% block title 'Tous les etudiants' %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Voir tous nos etudiant</h1>
+        <!--<div class="jumbotron">
+        </div>-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Nom et Prénom(s)</th>
+                    <th>Date et lieu de naissance</th>
+                    <th>Sexe</th>
+                    <th>Nationalité</th>
+                    <th>Addresse</th>
+                    <th>Contact</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for etudiant in etudiants %}
+                    {% include 'etudiant/_etudiant.html.twig' %}
+                {% endfor %}
+                </tbody>
+            </table>
+        <div class="pagination">
+            {{ knp_pagination_render(etudiants) }}
+        </div>
+    </div>
+{% endblock %}
